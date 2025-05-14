@@ -1,42 +1,133 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+
+.title-navbar {
+  font-size: 22px;
+  font-weight: bolder;
+  color: white;
+  margin-right: 10%;
+}
+
+.opt-navbar {
+  color: white;
+}
+
+/* hero section */
+
+.hero-section {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.2)),
+    url('/src/assets/img-hero-section.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  color: white;
+  padding-top: 75px;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.btn-descubra {
+  font-size: 25px;
+  margin-top: 10%;
+  margin-bottom: 0%;
+}
+
+/* about section */
+
+.img-about {
+  margin-top: 75px;
+  width: 70%;           
+  height: 450px;         
+  object-fit: cover;      
+  object-position: center center; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  margin-left: 15%;
+}
+
+.title-about {
+  margin-bottom: 5%;
+  background-color: #30b15c;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+}
+ 
+/* culture-section*/
+
+.culture-title {
+  margin-top: 75px;
+  margin-bottom: 2%;
+  background-color: #30b15c;
+  color: rgb(255, 255, 255);
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+}
+
+/* help-section */
+
+.how-title {
+  margin-top: 60px;
+  padding-bottom: 40px;
+}
+
+/* benefits-section */
+
+.benefits-title {
+  padding-bottom: 3%;
+}
+
+/* plans-section*/
+
+.plan-card {
+  min-height: 350px;
   padding: 2rem;
-  text-align: center;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.plan-card:hover {
+  transform: translateY(-5px);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.plan-featured {
+  border: 2px solid #198754;
+  background-color: #e9f8ee;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.plan-title {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
-.card {
-  padding: 2em;
+.plan-price {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+.plan-button {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.title-plans {
+  font-size: 2.2rem;
+  font-weight: bold;
 }
