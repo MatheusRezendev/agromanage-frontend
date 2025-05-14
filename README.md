@@ -22,10 +22,6 @@ Este repositório contém o front-end do AgroManage, desenvolvido em **React.js*
   ```bash
   npm install
   ```
-3. Configure o ambiente (se necessário crie um .env)::
-  ```bash
-  REACT_APP_API_URL=http://localhost:8080
-```
-4. Inicie a aplicação:
+3. Inicie a aplicação:
   ```bash 
-  npm start
+  npm run dev
