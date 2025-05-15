@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* navbar */
@@ -18,9 +18,7 @@ body {
 /* hero section */
 
 .hero-section {
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.2)),
-    url('/src/assets/img-hero-section.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.2)), url("/src/assets/img-hero-section.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -46,12 +44,12 @@ body {
 
 .img-about {
   margin-top: 75px;
-  width: 70%;           
-  height: 450px;         
-  object-fit: cover;      
-  object-position: center center; 
+  width: 70%;
+  height: 450px;
+  object-fit: cover;
+  object-position: center center;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   margin-left: 15%;
 }
 
@@ -63,7 +61,7 @@ body {
   border-radius: 0.5rem;
   display: inline-block;
 }
- 
+
 /* culture-section*/
 
 .culture-title {
@@ -130,4 +128,42 @@ body {
 .title-plans {
   font-size: 2.2rem;
   font-weight: bold;
+}
+
+/* Login e Cadastro */
+
+.login-page,
+.register-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.login-title,
+.register-title {
+  color: #198754;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Dashboard */
+
+.dashboard-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.dashboard-welcome {
+  color: #198754;
+  font-weight: 600;
+}
+
+.dashboard-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
