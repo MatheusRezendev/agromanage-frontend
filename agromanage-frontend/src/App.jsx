@@ -3,7 +3,10 @@ import LandingPage from "./pages/LandingPage"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import DashboardPage from "./pages/DashboardPage"
-import { useEffect } from "react"
+import EmployeesPage from "./pages/EmployeesPage"
+import FinancesPage from "./pages/FinancesPage"
+import CropsPage from "./pages/CropsPage"
+import SettingsPage from "./pages/SettingsPage"
 
 export default function App() {
   return (
@@ -13,6 +16,10 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastrar" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/funcionarios" element={<EmployeesPage />} />
+        <Route path="/financas" element={<FinancesPage />} />
+        <Route path="/lavouras" element={<CropsPage />} />
+        <Route path="/configuracoes" element={<SettingsPage />} />
       </Routes>
     </Router>
   )

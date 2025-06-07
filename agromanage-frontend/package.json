@@ -12,11 +12,11 @@
   "dependencies": {
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
+    "chart": "^0.1.2",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.6.0",
-    "recharts": "^2.15.3"
+    "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
