@@ -22,6 +22,7 @@ export default function Sidebar() {
     { path: "/dashboard", icon: "bi-speedometer2", label: "Dashboard" },
     { path: "/lavouras", icon: "bi-flower2", label: "Lavouras" },
     { path: "/financas", icon: "bi-cash-coin", label: "Finanças" },
+    { path: "/estoque", icon: "bi-box-seam", label: "Estoque" },
     { path: "/funcionarios", icon: "bi-people", label: "Funcionários" },
     { path: "/configuracoes", icon: "bi-gear", label: "Configurações" },
   ]
