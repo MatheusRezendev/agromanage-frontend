@@ -7,6 +7,7 @@ import EmployeesPage from "./pages/EmployeesPage"
 import FinancesPage from "./pages/FinancesPage"
 import CropsPage from "./pages/CropsPage"
 import SettingsPage from "./pages/SettingsPage"
+import StockPage from "./pages/StockPage"
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/funcionarios" element={<EmployeesPage />} />
         <Route path="/financas" element={<FinancesPage />} />
+        <Route path="/estoque" element={<StockPage />} />
         <Route path="/lavouras" element={<CropsPage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
       </Routes>
