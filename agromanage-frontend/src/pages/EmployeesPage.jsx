@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { Row, Col, Card, Button, Modal, Table, Badge } from "react-bootstrap"
 import DashboardLayout from "../components/DashboardLayout"
@@ -60,36 +62,107 @@ export default function EmployeesPage() {
   }
 
   const exportToExcel = (employee) => {
-    const csvContent = [
-      ["RELATÓRIO DO FUNCIONÁRIO"],
-      [""],
-      ["Dados Pessoais"],
-      ["Nome", employee.name],
-      ["Telefone", employee.phone || ""],
-      ["Cargo", employee.position],
-      ["Data de Admissão", new Date(employee.hireDate).toLocaleDateString("pt-BR")],
-      ["Status", employee.status],
-      [""],
-      ["Atividades"],
-      ["Data", "Atividade", "Status", "Tipo Pagamento", "Valor"],
-      ...(employee.activities || []).map((activity) => [
-        new Date(activity.date).toLocaleDateString("pt-BR"),
-        activity.activity,
-        activity.status,
-        activity.paymentType,
-        `R$ ${Number.parseFloat(activity.amount || 0).toLocaleString("pt-BR")}`,
-      ]),
-      [""],
-      ["Total Pago", "", "", "", `R$ ${calculateTotalPayment(employee).toLocaleString("pt-BR")}`],
-    ]
+    // Criar uma tabela HTML que o Excel pode abrir
+    let excelHtml =
+      '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">'
+    excelHtml +=
+      "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Relatório</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->"
+    excelHtml += '<meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>'
+    excelHtml +=
+      "<style>td { mso-number-format:'\\@'; } .number { mso-number-format:'0.00'; } .currency { mso-number-format:'R$\\ #,##0.00'; }</style>"
+    excelHtml += "</head><body>"
 
-    const csvString = csvContent.map((row) => row.join(",")).join("\n")
-    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" })
-    const link = document.createElement("a")
+    // Iniciar a tabela
+    excelHtml += '<table border="1" cellpadding="3" style="border-collapse:collapse;">'
+
+    // Título do relatório
+    excelHtml +=
+      '<tr><td colspan="5" style="font-weight:bold;background-color:#4CAF50;color:white;text-align:center;font-size:14pt">RELATÓRIO DO FUNCIONÁRIO</td></tr>'
+
+    // Linha em branco
+    excelHtml += '<tr><td colspan="5"></td></tr>'
+
+    // Cabeçalhos dos dados pessoais
+    excelHtml += "<tr>"
+    excelHtml += '<td style="font-weight:bold;background-color:#E8F5E9">Nome</td>'
+    excelHtml += '<td style="font-weight:bold;background-color:#E8F5E9">Telefone</td>'
+    excelHtml += '<td style="font-weight:bold;background-color:#E8F5E9">Cargo</td>'
+    excelHtml += '<td style="font-weight:bold;background-color:#E8F5E9">Data de Admissão</td>'
+    excelHtml += '<td style="font-weight:bold;background-color:#E8F5E9">Status</td>'
+    excelHtml += "</tr>"
+
+    // Dados pessoais do funcionário
+    excelHtml += "<tr>"
+    excelHtml += `<td>${employee.name || ""}</td>`
+    excelHtml += `<td>${employee.phone || ""}</td>`
+    excelHtml += `<td>${employee.position || ""}</td>`
+    excelHtml += `<td>${employee.hireDate ? new Date(employee.hireDate).toLocaleDateString("pt-BR") : ""}</td>`
+    excelHtml += `<td>${employee.status || ""}</td>`
+    excelHtml += "</tr>"
+
+    // Cabeçalho da seção de atividades
+    excelHtml += '<tr><td colspan="5">Atividades</td></tr>'
+
+    // Cabeçalhos das colunas de atividades
+    excelHtml += "<tr>"
+    excelHtml += '<td style="font-weight:bold">Data</td>'
+    excelHtml += '<td style="font-weight:bold">Atividade</td>'
+    excelHtml += '<td style="font-weight:bold">Status</td>'
+    excelHtml += '<td style="font-weight:bold">Tipo Pagamento</td>'
+    excelHtml += '<td style="font-weight:bold">Valor</td>'
+    excelHtml += "</tr>"
+
+    // Dados das atividades
+    if (employee.activities && employee.activities.length > 0) {
+      employee.activities.forEach((activity) => {
+        excelHtml += "<tr>"
+        excelHtml += `<td>${new Date(activity.date).toLocaleDateString("pt-BR")}</td>`
+        excelHtml += `<td>${activity.activity || ""}</td>`
+        excelHtml += `<td>${activity.status || ""}</td>`
+        excelHtml += `<td>${activity.paymentType || ""}</td>`
+        // Formatar o valor como moeda com vírgula
+        const amount = Number.parseFloat(activity.amount || 0)
+        excelHtml += `<td class="currency">R$ ${amount.toFixed(2).replace(".", ",")}</td>`
+        excelHtml += "</tr>"
+      })
+    }
+
+    // Adicionar linhas vazias para completar até a linha 13
+    const rowsToAdd = Math.max(0, 7 - (employee.activities?.length || 0))
+    for (let i = 0; i < rowsToAdd; i++) {
+      excelHtml += "<tr>"
+      excelHtml += "<td></td>"
+      excelHtml += "<td></td>"
+      excelHtml += "<td></td>"
+      excelHtml += "<td></td>"
+      excelHtml += "<td></td>"
+      excelHtml += "</tr>"
+    }
+
+    // Calcular o total para exibir no HTML (para navegadores que não suportam fórmulas Excel)
+    const totalAmount = calculateTotalPayment(employee)
+
+    // Total pago com fórmula do Excel
+    excelHtml += "<tr>"
+    excelHtml += "<td>Total Pago</td>"
+    excelHtml += '<td colspan="3"></td>'
+
+    // Usar a sintaxe correta para fórmulas no Excel em português
+    excelHtml += '<td class="currency">=SOMA(E7:E13)</td>'
+
+    excelHtml += "</tr>"
+
+    // Fechar a tabela e o documento HTML
+    excelHtml += "</table></body></html>"
+
+    // Criar um blob com o conteúdo HTML
+    const blob = new Blob([excelHtml], { type: "application/vnd.ms-excel" })
     const url = URL.createObjectURL(blob)
-    link.setAttribute("href", url)
-    link.setAttribute("download", `${employee.name.replace(/\s+/g, "_")}_relatorio.csv`)
-    link.style.visibility = "hidden"
+
+    // Criar um link para download e clicar nele
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `${employee.name.replace(/\s+/g, "_")}_relatorio.xls`
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
