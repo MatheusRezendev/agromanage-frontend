@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { useEffect, useState } from "react"
 
+/*Landing Page*/
 export default function NavbarComponent() {
   const location = useLocation()
   const navigate = useNavigate()

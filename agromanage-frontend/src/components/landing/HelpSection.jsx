@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import '../App.css'
+import '../../App.css'
 
+/*Landing Page*/
 export default function HelpSection() {
   return (
     <section id="how" className="bg-light py-5">

@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import '../App.css'
+import '../../App.css'
 
+/*Landing Page*/
 export default function BenefitsSection() {
   return (
     <section id="benefits" className="bg-light py-5">

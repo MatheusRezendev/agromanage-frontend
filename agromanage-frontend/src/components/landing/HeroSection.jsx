@@ -1,6 +1,7 @@
 import { Container, Button } from 'react-bootstrap';
-import '../App.css'
+import '../../App.css'
 
+/*Landing Page*/
 export default function HeroSection() {
   return (
     <section className="hero-section text-center bg-light py-5">

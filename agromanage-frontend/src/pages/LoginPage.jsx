@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
-import NavbarComponent from "../components/NavbarComponent"
-import Footer from "../components/Footer"
+import NavbarComponent from "../components/landing/NavbarComponent"
+import Footer from "../components/landing/Footer"
 import "../App.css"
 
 export default function LoginPage() {
