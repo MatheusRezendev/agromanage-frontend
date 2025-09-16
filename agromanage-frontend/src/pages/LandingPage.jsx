@@ -1,11 +1,11 @@
-import NavbarComponent from '../components/NavbarComponent';
-import HeroSection from '../components/HeroSection';
-import AboutSection from '../components/AboutSection';
-import CultureSection from '../components/CultureSection';
-import HelpSection from '../components/HelpSection';
-import BenefitsSection from '../components/BenefitsSection';
-import PlansSection from '../components/PlansSection';
-import Footer from '../components/Footer';
+import NavbarComponent from '../components/landing/NavbarComponent';
+import HeroSection from '../components/landing/HeroSection';
+import AboutSection from '../components/landing/AboutSection';
+import CultureSection from '../components/landing/CultureSection';
+import HelpSection from '../components/landing/HelpSection';
+import BenefitsSection from '../components/landing/BenefitsSection';
+import PlansSection from '../components/landing/PlansSection';
+import Footer from '../components/landing/Footer';
 
 export default function LandingPage() {
   return (

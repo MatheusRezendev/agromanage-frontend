@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import '../App.css'
+import '../../App.css'
 
+/*Landing Page*/
 export default function CultureSection() {
   return (
     <section id="culture" className="py-5">

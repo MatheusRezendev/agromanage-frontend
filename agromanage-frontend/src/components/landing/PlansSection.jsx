@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
-import '../App.css'
+import '../../App.css'
 
+/*Landing Page*/
 export default function PlansSection() {
   return (
     <section id="plans" className="py-5">
